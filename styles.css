@@ -253,7 +253,10 @@ nav ul li a:hover {
 }
 
 .profile-image {
-    width: 100px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
     border-radius: 20px;
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
     transition: var(--transition);
@@ -353,13 +356,6 @@ nav ul li a:hover {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
-
-
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
 
 @keyframes marquee {
     0% { transform: translateX(0); }
