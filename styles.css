@@ -123,15 +123,16 @@ header .container {
 }
 
 header.menu-open::after {
-    content: '';
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(194, 197, 203, 0.5);
-    z-index: 999;
-}
+        content: '';
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(194, 197, 203, 0.5);
+        z-index: 999;
+    }
+
 
 .logo {
     font-size: 1.8rem;
@@ -236,9 +237,18 @@ nav ul li a:hover {
 }
 
 .image-container {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    width: 200px; 
+    height: 200px;
+    margin: 0 auto;
+}
+
+ .image-container {
     position: relative;
     width: 200px;
-    height: 200px;
+    max-width: 200px;
     margin: 0 auto;
 }
 
@@ -247,12 +257,13 @@ nav ul li a:hover {
     height: 200px;
     object-fit: cover;
     border-radius: 20px;
+    border-radius: 20px;
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
     transition: var(--transition);
     position: absolute;
-    animation: float 3s infinite ease-in-out;
+    animation: float 1s infinite ease-in-out;
     z-index: 1;
-    transform-origin: center;
+    -ms-transform-origin-x: 50px;
 }
 
 .tech-icons {
@@ -346,6 +357,11 @@ nav ul li a:hover {
     100% { transform: translateX(-50%); }
 }
 
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
 @keyframes float {
     0%, 100% {
         transform: translateY(0);
@@ -377,7 +393,7 @@ nav ul li a:hover {
 
 .floating-image {
     width: auto;
-    height: 200px;
+    height:200px;
     border-radius: 20px;
     box-shadow: var(--box-shadow);
     animation: float 4s infinite ease-in-out;
@@ -623,6 +639,7 @@ footer {
     }
 }
 
+/* Tambahkan ini di bagian responsive */
 @media (max-width: 768px) {
     .hero .container {
         flex-direction: column;
@@ -666,8 +683,53 @@ footer {
         height: auto;
         max-width: 250px;
     }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
     
-    /* Navigation for mobile */
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .modern-marquee {
+        padding: 10px 0;
+    }
+    
+    .marquee-content span {
+        padding: 5px 10px;
+        margin-right: 20px;
+        font-size: 0.9rem;
+    }
+    
+    .experience {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .exp-item {
+        min-width: 100%;
+    }
+}
+
+
+@media (max-width: 768px) {
+    nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: var(--box-shadow);
+        transition: var(--transition);
+    }
+    
+    nav.active {
+        left: 0;
+    }
+    
     nav ul {
         position: fixed;
         top: 80px;
@@ -716,26 +778,15 @@ footer {
         font-size: 1.5rem;
     }
     
-    .modern-marquee {
-        padding: 10px 0;
-    }
-    
-    .marquee-content span {
-        padding: 5px 10px;
-        margin-right: 20px;
-        font-size: 0.9rem;
+    .btn {
+        padding: 10px 20px;
     }
     
     .experience {
         flex-direction: column;
-        gap: 15px;
     }
     
     .exp-item {
         min-width: 100%;
-    }
-    
-    .btn {
-        padding: 10px 20px;
     }
 }
