@@ -1,41 +1,55 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav ul');
     const header = document.querySelector('header');
     
-    menuToggle.addEventListener('click', function() {
+    function toggleMenu() {
         nav.classList.toggle('active');
         header.classList.toggle('menu-open');
-        this.querySelector('i').classList.toggle('fa-times');
-        this.querySelector('i').classList.toggle('fa-bars');
         
-        // Mencegah scroll ketika menu terbuka
-        if (nav.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
+        const icon = menuToggle.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('fa-times');
+            icon.classList.toggle('fa-bars');
         }
-    });
+        
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+    }
     
-    // Close menu when clicking on a link
+    // Support both click and touch events
+    menuToggle.addEventListener('click', toggleMenu);
+    menuToggle.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        toggleMenu();
+    }, { passive: false });
+    
+    // Close menu when clicking links
     const navLinks = document.querySelectorAll('nav ul li a');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             nav.classList.remove('active');
             header.classList.remove('menu-open');
-            menuToggle.querySelector('i').classList.remove('fa-times');
-            menuToggle.querySelector('i').classList.add('fa-bars');
-            document.body.style.overflow = ''; // Mengembalikan scroll
+            
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+            
+            document.body.style.overflow = '';
+        });
+        
+        // Add touch support for links
+        link.addEventListener('touchend', function(e) {
+            if (e.cancelable) e.preventDefault();
+            this.click();
         });
     });
     
     // Header scroll effect
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+        header.classList.toggle('scrolled', window.scrollY > 100);
     });
     
     // Animate elements on scroll
@@ -54,8 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initial check
     animateOnScroll();
-    
-    // Check on scroll
     window.addEventListener('scroll', animateOnScroll);
     
     // Smooth scrolling for anchor links
