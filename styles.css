@@ -304,19 +304,56 @@ nav ul li a:hover {
 .modern-marquee {
     overflow: hidden;
     margin: 20px 0;
+    background-color: rgba(52, 152, 219, 0.1);
+    padding: 15px 0;
+    border-radius: 50px;
+    border: 1px solid rgba(52, 152, 219, 0.2);
 }
 
 .marquee-content {
     display: flex;
-    animation: scroll 10s linear infinite;
+    animation: scroll 20s linear infinite;
+}
+
+.marquee-content:hover {
+    animation-play-state: paused;
 }
 
 .marquee-content span {
+    display: flex;
+    align-items: center;
     margin-right: 40px;
-    color: var(--primary-color);
+    color: var(--dark-color);
     font-weight: bold;
     white-space: nowrap;
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+.marquee-content span i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.marquee-content span:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.marquee-content span:hover i {
+    color: white;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
 
 @keyframes scroll {
     0% { transform: translateX(0); }
