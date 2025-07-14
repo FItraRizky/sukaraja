@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav ul');
     const header = document.querySelector('header');
@@ -9,6 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
         header.classList.toggle('menu-open');
         this.querySelector('i').classList.toggle('fa-times');
         this.querySelector('i').classList.toggle('fa-bars');
+        
+        // Mencegah scroll ketika menu terbuka
+        if (nav.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
     });
     
     // Close menu when clicking on a link
@@ -19,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.remove('menu-open');
             menuToggle.querySelector('i').classList.remove('fa-times');
             menuToggle.querySelector('i').classList.add('fa-bars');
+            document.body.style.overflow = ''; // Mengembalikan scroll
         });
     });
     
